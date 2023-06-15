@@ -30,4 +30,4 @@ jobs:
 
         docker image build -t "${{ secrets.DOCKER_HUB_USERNAME }}"/wzmlx:latest .
 
-        docker push "${{ secrets.DOCKER_HUB_USERNAME }}"/wzml:latest
+        docker push "${{ secrets.DOCKER_HUB_USERNAME }}"/wzmlx:latest
