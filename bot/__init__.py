@@ -51,8 +51,8 @@ non_queued_up = set()
 
 def get_version():
     MAJOR = '1'
-    MINOR = '0'
-    PATCH = '0'
+    MINOR = '1'
+    PATCH = '1'
     return f"v{MAJOR}.{MINOR}.{PATCH}-x"
 
 
@@ -75,7 +75,6 @@ BOT_TOKEN = environ.get('BOT_TOKEN', '')
 if len(BOT_TOKEN) == 0:
     log_error("BOT_TOKEN variable is missing! Exiting now")
     exit(1)
-
 
 bot_id = BOT_TOKEN.split(':', 1)[0]
 
@@ -394,10 +393,6 @@ DAILY_LEECH_LIMIT = '' if len(
 DISABLE_DRIVE_LINK = environ.get('DISABLE_DRIVE_LINK', '')
 DISABLE_DRIVE_LINK = DISABLE_DRIVE_LINK.lower() == 'true'
 
-GDTOT_CRYPT = environ.get('GDTOT_CRYPT', '')
-if len(GDTOT_CRYPT) == 0:
-    GDTOT_CRYPT = ''
-
 BOT_THEME = environ.get('BOT_THEME', '')
 if len(BOT_THEME) == 0:
     BOT_THEME = 'minimal'
@@ -437,7 +432,7 @@ SET_COMMANDS = environ.get('SET_COMMANDS', '')
 SET_COMMANDS = SET_COMMANDS.lower() == 'true'
 
 TOKEN_TIMEOUT = environ.get('TOKEN_TIMEOUT', '')
-TOKEN_TIMEOUT = int(TOKEN_TIMEOUT) if TOKEN_TIMEOUT.isdigit() else 21600
+TOKEN_TIMEOUT = int(TOKEN_TIMEOUT) if TOKEN_TIMEOUT.isdigit() else ''
 
 LOGIN_PASS = environ.get('LOGIN_PASS', '')
 if len(LOGIN_PASS) == 0:
@@ -476,8 +471,9 @@ if len(ANIME_TEMPLATE) == 0:
 
 <b>Description</b>: <i>{description}</i>'''
 
-POSTER = environ.get('POSTER', '')
-POSTER = POSTER.lower() == 'true'
+TIMEZONE = environ.get('TIMEZONE', '')
+if len(TIMEZONE) == 0:
+    TIMEZONE = 'Asia/Kolkata'
 
 config_dict = {'ANIME_TEMPLATE': ANIME_TEMPLATE,
                'AS_DOCUMENT': AS_DOCUMENT,
@@ -508,7 +504,6 @@ config_dict = {'ANIME_TEMPLATE': ANIME_TEMPLATE,
                'LEECH_LOG_ID': LEECH_LOG_ID,
                'BOT_PM': BOT_PM,
                'DISABLE_DRIVE_LINK': DISABLE_DRIVE_LINK,
-               'GDTOT_CRYPT': GDTOT_CRYPT,
                'BOT_THEME': BOT_THEME,
                'IMAGES': IMAGES,
                'IMG_SEARCH': IMG_SEARCH,
@@ -517,8 +512,8 @@ config_dict = {'ANIME_TEMPLATE': ANIME_TEMPLATE,
                'AUTHOR_NAME': AUTHOR_NAME,
                'AUTHOR_URL': AUTHOR_URL,
                'TITLE_NAME': TITLE_NAME,
+               'TIMEZONE': TIMEZONE,
                'GD_INFO': GD_INFO,
-               'POSTER': POSTER,
                'EQUAL_SPLITS': EQUAL_SPLITS,
                'EXTENSION_FILTER': EXTENSION_FILTER,
                'GDRIVE_ID': GDRIVE_ID,
