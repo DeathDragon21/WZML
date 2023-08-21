@@ -64,6 +64,10 @@ async def getRssMenu(client, message):
 async def rssSub(client, message, pre_event):
     user_id = message.from_user.id
     handler_dict[user_id] = False
+    if username := message.from_user.username:
+        tag = f"@{username}"
+    else:
+        tag = message.from_user.mention
     msg = ''
     items = message.text.split('\n')
     for index, item in enumerate(items, start=1):
